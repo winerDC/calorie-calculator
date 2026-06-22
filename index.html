@@ -1,33 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calorie Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Tracker</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🔥 Calorie Tracker</h1>
-            <button class="button" onabort="ToggleTheme()">🌙</button>
-        </header>
-    </div>
 
+<div class="container">
 
-        <!-- Dashboard -->
-    <div class="card">
-        <h2>Daily Overview</h2>
-        <div class="stats">
-            <span>Goal: <span id="goal">2000</span></span>
-            <span>Consumed: <span id="consumed">0</span></span>
-            <span>Remaining: <span id="remaining">0</span></span>
-        </div>
+<header>
+  <h1>🔥 Calorie Tracker</h1>
+  <button class="button" onclick="toggleTheme()">🌙</button>
+</header>
 
-        <div class="progress">
-            <div id="bar">
-        </div>
-        <p class="center" id="percent">0%</p>
-    </div>
+<!-- Dashboard -->
+<div class="card">
+  <h2>Daily Overview</h2>
+  <div class="stats">
+    <span>Goal: <span id="goal">2000</span></span>
+    <span>Consumed: <span id="consumed">0</span></span>
+    <span>Remaining: <span id="remaining">0</span></span>
+  </div>
+
+  <div class="progress"><div id="bar"></div></div>
+  <p class="center" id="percent">0%</p>
+</div>
+
+<!-- Add Food -->
+<div class="card">
+  <h2>Add Food</h2>
+  <input id="name" class="input" placeholder="Food name">
+  <select id="meal" class="select">
+    <option value="">Meal Type</option>
+    <option>Breakfast</option>
+    <option>Lunch</option>
+    <option>Dinner</option>
+    <option>Snack</option>
+  </select>
+  <button class="button" onclick="addFood()">Add</button>
+</div>
+
+<!-- Filters -->
+<div class="card">
+  <input placeholder="Search" id="search" class="input" oninput="render()">
+  <select id="filter" class="select" onchange="render()">
+    <option value="">All</option>
+    <option>Breakfast</option>
+    <option>Lunch</option>
+    <option>Dinner</option>
+    <option>Snack</option>
+  </select>
+</div>
+
+<!-- Food Log -->
+<div class="card">
+  <h2>Food Log</h2>
+  <div id="list"></div>
+</div>
+
+<!-- Settings -->
+<div class="card">
+  <h2>Settings</h2>
+  <input id="goalInput" class="input" type="number" placeholder="Set Goal">
+  <button class="button" onclick="saveGoal()">Save Goal</button>
+</div>
+
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <p>Delete this entry?</p>
+    <button onclick="confirmDelete()">Yes</button>
+    <button onclick="cancelDelete()">Cancel</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
